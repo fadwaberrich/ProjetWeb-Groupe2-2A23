@@ -23,6 +23,111 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
+--
+-- Structure de la table `categorie`
+--
+
+CREATE TABLE `categorie` (
+  `idCat` int(11) NOT NULL,
+  `nom` varchar(255) NOT NULL,
+  `chemin_img` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `categorie`
+--
+
+INSERT INTO `categorie` (`idCat`, `nom`, `chemin_img`) VALUES
+(1, 'm', 'kkk'),
+(3, 'BADER', 'rimeur.jpg'),
+(4, 'fffs', 'rrrr'),
+(5, 'mmp', 'pppm');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `produit`
+--
+
+CREATE TABLE `produit` (
+  `reference` int(11) NOT NULL,
+  `nom` varchar(256) NOT NULL,
+  `prix` int(255) NOT NULL,
+  `chemin_img` varchar(255) NOT NULL,
+  `quantite_total` int(11) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `idCat` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `produit`
+--
+
+INSERT INTO `produit` (`reference`, `nom`, `prix`, `chemin_img`, `quantite_total`, `description`, `idCat`) VALUES
+(1, 'pp', 44, 'rimeur.jpg', 44, 'fffff', 1),
+(4, 'BADER', 10, 'gants.jpg', 25, 'tapii', 3),
+(55, 'lllll', 222, 'm', 10, 'jhugfdsf', 4),
+(11555, 'jkkkk', 100, 'hhh', 455, ':mopuigyft', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `users`
+--
+
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `categorie`
+--
+ALTER TABLE `categorie`
+  ADD PRIMARY KEY (`idCat`);
+
+--
+-- Index pour la table `produit`
+--
+ALTER TABLE `produit`
+  ADD PRIMARY KEY (`reference`),
+  ADD KEY `idCat` (`idCat`);
+
+--
+-- Index pour la table `users`
+--
+
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `categorie`
+--
+ALTER TABLE `categorie`
+  MODIFY `idCat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT pour la table `produit`
+--
+ALTER TABLE `produit`
+  MODIFY `reference` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11556;
+
+
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `produit`
+--
+ALTER TABLE `produit`
+  ADD CONSTRAINT `FK_categorieProduit` FOREIGN KEY (`idCat`) REFERENCES `categorie` (`idCat`),
+  ADD CONSTRAINT `fk_idCat` FOREIGN KEY (`idCat`) REFERENCES `categorie` (`idCat`) ON DELETE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 --
 -- Structure de la table `membres`
@@ -79,6 +184,10 @@ INSERT INTO `pack` (`id_pack`, `nom_pack`, `description_pack`, `prix_pack`) VALU
 (11, 'SILVER', '- Un accÃ¨s limitÃ©s Ã  notre site\r\n- Un choix du coachs \r\n- Un suivi par un coachs\r\n- Choix et suivi d\'un nutritionniste\r\n', 70),
 (12, 'PLATINIUM', '- Un accÃ¨s illimitÃ©s Ã  notre site\r\n- Un choix du coachs \r\n- Un suivi par un coachs\r\n- Un choix du nutritionniste\r\n- Un suivi par un nutritionniste', 90),
 (14, 'GOLD', '- Un accÃ¨s illimitÃ©s Ã  notre site\r\n- Un choix du coachs \r\n- Un suivi par un coachs\r\n- Un choix du nutritionniste\r\n- Un suivi par un nutritionniste', 110);
+
+
+
+
 
 -- --------------------------------------------------------
 
